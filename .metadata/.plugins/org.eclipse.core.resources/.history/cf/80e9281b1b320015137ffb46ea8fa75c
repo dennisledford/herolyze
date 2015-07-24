@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.dledford.herolyze.config;
+
+/**
+ * @author phesto
+ *
+ */
+public class Config {
+
+}

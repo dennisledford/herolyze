@@ -1,0 +1,76 @@
+/**
+ * 
+ */
+package com.dledford.herolyze.config;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import org.springframework.util.StringUtils;
+
+/**
+ * @author dledford
+ *
+ */
+public class Config {
+	public static String MARVEL_PUBLIC_KEY;
+	public static String MARVEL_PRIVATE_KEY;
+	public static String COMICVINE_API_KEY;
+	private final String FILE_NAME="config.properties";
+	private static Config config = new Config();
+	
+	public void load() throws FileNotFoundException, IOException{
+		Properties properties = new Properties( System.getProperties() );	
+		String homePath = System.getProperty("user.home");
+		File homeDir = new File(homePath);
+		File config = new File(homeDir, FILE_NAME);
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
+		if (inputStream != null) {
+			properties.load(inputStream);
+			if(!keysExist(properties)){
+				properties = new Properties( System.getProperties() );
+				properties.load( new FileInputStream(config) );
+				if(!keysExist(properties)){
+					throw new FileNotFoundException("property file found '" + FILE_NAME + "' but keys not found in file");
+				}
+			}
+		} else {
+			properties = new Properties( System.getProperties() );
+			properties.load( new FileInputStream(config) );
+			if(!keysExist(properties)){
+				throw new FileNotFoundException("property file found '" + FILE_NAME + "' but keys not found in file");
+			}
+		}
+ 
+		
+	}
+	
+	private Config(){}
+	
+	public static Config getInstance(){
+		return config;
+	}
+	
+	private Boolean keysExist(Properties properties){
+		boolean result = false;
+		String mPublic = (String) properties.get("marvel_public_key");
+		String mPrivate = (String) properties.get("marvel_private_key");
+		String comicApi = (String) properties.get("comicvine_api_key");
+		if(!StringUtils.isEmpty(mPublic) && !StringUtils.isEmpty(mPrivate) && !StringUtils.isEmpty(comicApi)){
+			Config.getInstance();
+			Config.MARVEL_PRIVATE_KEY=mPrivate;
+			Config.getInstance();
+			Config.MARVEL_PUBLIC_KEY=mPublic;
+			Config.getInstance();
+			Config.COMICVINE_API_KEY=comicApi;
+			result = true;
+		}
+		return result;
+	}
+
+	
+}
