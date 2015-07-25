@@ -3,6 +3,7 @@
  */
 package com.dledford.herolyze;
 
+import com.dledford.herolyze.config.Config;
 import com.dledford.herolyze.domain.ComicVineCharacter;
 import com.dledford.herolyze.domain.MarvelCharacter;
 import com.dledford.herolyze.service.ComicVineService;
@@ -20,6 +21,7 @@ public class Application {
         MarvelCharacter character = new MarvelCharacter();
         ComicVineCharacter comicVine = new ComicVineCharacter();
 		try {
+	        Config.getInstance().load();
 			character = new MarvelService().getCharacterById(1011334L);
 			if(character != null){
 			System.out.println("Name: " + character.getName());  

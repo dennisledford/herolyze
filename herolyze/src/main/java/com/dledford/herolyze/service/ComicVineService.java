@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.dledford.herolyze.config.Config;
 import com.dledford.herolyze.domain.BaseEntity;
 import com.dledford.herolyze.domain.ComicVineCharacter;
 import com.dledford.herolyze.utils.ComicVineContainer;
@@ -24,7 +25,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class ComicVineService {
 
-	private static final String API_KEY = "?api_key=";
+	private static final String API_KEY = "?api_key="+Config.getInstance().COMICVINE_API_KEY;
 	private static final String ENDPOINT = "http://www.comicvine.com/api/";
 	private static final String FORMAT = "&format=json";
 	private static final Long CHARACTER_TYPE = 4005L;

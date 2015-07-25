@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.dledford.herolyze.config.Config;
 import com.dledford.herolyze.domain.BaseEntity;
 import com.dledford.herolyze.domain.MarvelCharacter;
 import com.dledford.herolyze.utils.MarvelContainer;
@@ -25,8 +26,8 @@ import org.springframework.web.client.RestTemplate;
  */
 public class MarvelService {
 
-	private static final String PUBLIC_KEY = "";
-	private static final String PRIVATE_KEY = "";
+	private static final String PUBLIC_KEY = Config.getInstance().MARVEL_PUBLIC_KEY;
+	private static final String PRIVATE_KEY = Config.getInstance().MARVEL_PRIVATE_KEY;
 	private static final String ENDPOINT = "http://gateway.marvel.com/";
 	private static final String DELIMITER = "/";
 	private static final String CHARACTERS_API = "v1/public/characters";
