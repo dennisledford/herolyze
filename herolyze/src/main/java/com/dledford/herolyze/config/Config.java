@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.commons.cli.Options;
 import org.springframework.util.StringUtils;
 
 /**
@@ -21,6 +22,7 @@ public class Config {
 	public static String MARVEL_PRIVATE_KEY;
 	public static String COMICVINE_API_KEY;
 	private final String FILE_NAME="config.properties";
+	private Parameters parameters = new Parameters();
 	private static Config config = new Config();
 	
 	private Config(){}
@@ -68,5 +70,8 @@ public class Config {
 		return false;
 	}
 
+	public Options getInputOptions(){
+		return parameters.getOptions();
+	}
 	
 }

@@ -2,6 +2,7 @@ com\dledford\herolyze\service\MarvelService.class
 com\dledford\herolyze\utils\MarvelContainer.class
 com\dledford\herolyze\utils\ComicVineContainer.class
 com\dledford\herolyze\service\MarvelService$3.class
+com\dledford\herolyze\config\Parameters.class
 com\dledford\herolyze\service\ComicVineService$3.class
 com\dledford\herolyze\domain\BaseEntity.class
 com\dledford\herolyze\domain\ComicVineCharacter.class
