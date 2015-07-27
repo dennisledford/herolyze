@@ -18,7 +18,8 @@ public class Parameters {
 	}
 
 	public Parameters(){
-		options.addOption("t","test",false,"Run test call against Marvel API and ComicVine API");
 		options.addOption("n","name",true, "Character's name");
+		options.addOption("h","help",false,"Help");
+		options.addOption("t","test",false,"Run test call against Marvel API and ComicVine API");
 	}
 }

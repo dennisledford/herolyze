@@ -29,14 +29,18 @@ public class Application {
 			Config.getInstance().load();
 			CommandLineParser parser = new DefaultParser();
 			CommandLine cmd = parser.parse( Config.getInstance().getInputOptions(), args);
-			if(cmd.hasOption("t")) {
+			if(cmd.hasOption("t") || cmd.hasOption("test")) {
 				test();
 			}
-			if(cmd.hasOption("n")){
+			if(cmd.hasOption("n") || cmd.hasOption("name")){
 				List<ComicVineCharacter> characters = new ComicVineService().getCharacters(cmd.getOptionValue("n"));
 				for(ComicVineCharacter character : characters){
 					System.out.println("Name: " + character.getName() + " ID = " + character.getId());
 				}
+			}
+			if(cmd.hasOption("h") || cmd.hasOption("help")){
+				HelpFormatter formatter = new HelpFormatter();
+				formatter.printHelp( "herolyze",  Config.getInstance().getInputOptions() );
 			}
 			else{
 				HelpFormatter formatter = new HelpFormatter();
